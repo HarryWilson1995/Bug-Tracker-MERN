@@ -61,8 +61,38 @@ router.post(
 // @route   PUT api/bugs/:id
 // @desc    Update bug
 // @access  Private
-router.put('/:id', (req, res) => {
-  res.send('Update bug');
+router.put('/:id', auth, async (req, res) => {
+  const { name, description, priority, status } = req.body;
+
+  // Build bug object
+  const bugFields = {};
+  if (name) bugFields.name = name;
+  if (description) bugFields.description = description;
+  if (priority) bugFields.priority = priority;
+  if (status) bugFields.status = status;
+
+  try {
+    let bug = await Bug.findById(req.params.id);
+
+    if (!bug) return res.status(404).json({ msg: 'Bug not found' });
+
+    // Make sure user owns bug
+    if (bug.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    bug = await Bug.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: bugFields,
+      },
+      { new: true }
+    );
+    res.json(bug);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 // @route   DELETE api/bugs/:id
