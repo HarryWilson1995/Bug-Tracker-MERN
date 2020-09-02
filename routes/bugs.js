@@ -47,7 +47,14 @@ router.post(
         status,
         user: req.user.id,
       });
-    } catch (err) {}
+
+      const bug = await newBug.save();
+
+      res.json(bug);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
 );
 
