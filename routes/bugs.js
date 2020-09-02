@@ -98,8 +98,23 @@ router.put('/:id', auth, async (req, res) => {
 // @route   DELETE api/bugs/:id
 // @desc    Delete bug
 // @access  Private
-router.delete('/:id', (req, res) => {
-  res.send('Delete bug');
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    let bug = await Bug.findById(req.params.id);
+
+    if (!bug) return res.status(404).json({ msg: 'Bug not found' });
+
+    // Make sure user owns bug
+    if (bug.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    await Bug.findByIdAndRemove(req.params.id);
+    res.json({ msg: 'Bug removed' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 module.exports = router;
