@@ -1,11 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
+const { check, validationResult } = require('express-validator');
+
+const User = require('../models/User');
+const Bug = require('../models/Bug');
 
 // @route   GET api/bugs
 // @desc    Get all users bugs
 // @access  Private
-router.get('/', (req, res) => {
-  res.send('Get all users bugs');
+router.get('/', auth, async (req, res) => {
+  try {
+    const bugs = await Bug.find({ user: req.user.id }).sort({ date: -1 });
+    res.json(bugs);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 // @route   POST api/bugs
