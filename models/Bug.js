@@ -13,21 +13,20 @@ const BugSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
-    type: String,
-    required: true,
-  },
+  // team: {
+  //   type: String,
+  //   required: true,
+  // },
   date: {
     type: Date,
     default: Date.now,
   },
   priority: {
     type: String,
-    required: true,
+    default: 'Normal',
   },
   status: {
     type: String,
-    required: true,
     default: 'Open',
   },
 });
