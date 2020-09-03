@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const BugItem = ({ bug }) => {
-  const { id, name, description, priority, status } = bug;
+  const { id, name, description, priority, status, location } = bug;
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
@@ -10,15 +10,18 @@ const BugItem = ({ bug }) => {
         <span
           style={{ float: 'right' }}
           className={
-            'badge ' + (priority === 'High' ? 'badge-danger' : 'badge-success')
+            'badge ' + (priority === 'High' ? 'badge-danger' : 'badge-light')
           }
         >
           {priority.charAt(0).toUpperCase() + priority.slice(1)}
         </span>
       </h3>
       <ul className='list'>
+        <li>Created by: </li>
         <li>Status: {status}</li>
+        <li>Location/File: {location}</li>
         <li>Description: {description}</li>
+        <li>Team members: </li>
       </ul>
       <p>
         <button style={{ marginRight: '1rem' }} className='btn btn-dark btn-sm'>

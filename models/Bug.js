@@ -13,6 +13,10 @@ const BugSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  location: {
+    type: String,
+    required: true,
+  },
   // team: {
   //   type: String,
   //   required: true,

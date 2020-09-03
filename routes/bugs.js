@@ -29,6 +29,7 @@ router.post(
     [
       check('name', 'Name is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),
+      check('location', 'Location is required').not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -37,7 +38,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, description, priority, status } = req.body;
+    const { name, description, priority, status, location } = req.body;
 
     try {
       const newBug = new Bug({
@@ -45,6 +46,7 @@ router.post(
         description,
         priority,
         status,
+        location,
         user: req.user.id,
       });
 
@@ -62,7 +64,7 @@ router.post(
 // @desc    Update bug
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-  const { name, description, priority, status } = req.body;
+  const { name, description, priority, status, location } = req.body;
 
   // Build bug object
   const bugFields = {};
@@ -70,6 +72,7 @@ router.put('/:id', auth, async (req, res) => {
   if (description) bugFields.description = description;
   if (priority) bugFields.priority = priority;
   if (status) bugFields.status = status;
+  if (location) bugFields.location = location;
 
   try {
     let bug = await Bug.findById(req.params.id);

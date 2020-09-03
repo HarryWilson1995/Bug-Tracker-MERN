@@ -21,6 +21,7 @@ const BugState = (props) => {
         description: 'Ruby language issue',
         status: 'Open',
         priority: 'Low',
+        location: 'filename',
       },
       {
         id: 2,
@@ -28,6 +29,7 @@ const BugState = (props) => {
         description: 'Ruby language issue',
         status: 'Open',
         priority: 'Normal',
+        location: 'filename',
       },
       {
         id: 3,
@@ -35,6 +37,7 @@ const BugState = (props) => {
         description: 'Ruby language issue',
         status: 'Open',
         priority: 'High',
+        location: 'filename',
       },
       {
         id: 4,
@@ -42,6 +45,7 @@ const BugState = (props) => {
         description: 'Ruby language issue',
         status: 'Open',
         priority: 'Normal',
+        location: 'filename',
       },
     ],
   };
