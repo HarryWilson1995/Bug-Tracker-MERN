@@ -444,3 +444,20 @@ table th {
     justify-content: center;
   }
 }
+
+/* Button Container */
+
+@media (max-width: 375px) {
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .button-container button {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* .button-container {
+  display: flex;
+  flex-wrap: wrap;
+} */

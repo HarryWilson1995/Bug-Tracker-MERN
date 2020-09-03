@@ -23,7 +23,7 @@ const BugItem = ({ bug }) => {
         <li>Description: {description}</li>
         <li>Team members: </li>
       </ul>
-      <p>
+      <div className='button-container'>
         <button style={{ marginRight: '1rem' }} className='btn btn-dark btn-sm'>
           Edit
         </button>
@@ -37,7 +37,7 @@ const BugItem = ({ bug }) => {
         <button style={{ float: 'right' }} className='btn btn-danger btn-sm'>
           Delete
         </button>
-      </p>
+      </div>
     </div>
   );
 };
