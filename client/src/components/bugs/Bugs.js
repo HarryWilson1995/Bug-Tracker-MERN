@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import BugContext from '../../context/bug/bugContext';
+import BugItem from './BugItem';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
@@ -8,7 +9,7 @@ const Bugs = () => {
   return (
     <Fragment>
       {bugs.map((bug) => (
-        <h3>{bug.name}</h3>
+        <BugItem key={bug.id} bug={bug} />
       ))}
     </Fragment>
   );
