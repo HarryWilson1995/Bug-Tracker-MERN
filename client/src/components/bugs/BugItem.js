@@ -31,7 +31,8 @@ const BugItem = ({ bug }) => {
           style={{ marginRight: '1rem' }}
           className='btn btn-success btn-sm'
         >
-          Completed
+          Completed{' '}
+          <i style={{ marginLeft: '0.5rem' }} className='fas fa-check'></i>
         </button>
         <button style={{ float: 'right' }} className='btn btn-danger btn-sm'>
           Delete

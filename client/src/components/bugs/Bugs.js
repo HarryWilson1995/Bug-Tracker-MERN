@@ -8,9 +8,11 @@ const Bugs = () => {
   const { bugs } = bugContext;
   return (
     <Fragment>
-      {bugs.map((bug) => (
-        <BugItem key={bug.id} bug={bug} />
-      ))}
+      {bugs
+        .sort((a, b) => (a.priority > b.priority ? 1 : -1))
+        .map((bug) => (
+          <BugItem key={bug.id} bug={bug} />
+        ))}
     </Fragment>
   );
 };
