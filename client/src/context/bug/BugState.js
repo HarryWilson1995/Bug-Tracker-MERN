@@ -14,7 +14,32 @@ import {
 
 const BugState = (props) => {
   const initialState = {
-    bugs: [],
+    bugs: [
+      {
+        name: 'Coding Issue 1',
+        description: 'Ruby language issue',
+        status: 'Open',
+        priority: 'Normaly',
+      },
+      {
+        name: 'Coding Issue 2',
+        description: 'Ruby language issue',
+        status: 'Open',
+        priority: 'Normaly',
+      },
+      {
+        name: 'Coding Issue 3',
+        description: 'Ruby language issue',
+        status: 'Open',
+        priority: 'Normaly',
+      },
+      {
+        name: 'Coding Issue 4',
+        description: 'Ruby language issue',
+        status: 'Open',
+        priority: 'Normaly',
+      },
+    ],
   };
 
   const [state, dispatch] = useReducer(bugReducer, initialState);
