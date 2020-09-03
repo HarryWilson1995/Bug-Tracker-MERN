@@ -59,6 +59,9 @@ const BugState = (props) => {
   };
 
   // Delete Bug
+  const deleteBug = (id) => {
+    dispatch({ type: DELETE_BUG, payload: id });
+  };
 
   // Set Current Bug
 
@@ -75,6 +78,7 @@ const BugState = (props) => {
       value={{
         bugs: state.bugs,
         addBug,
+        deleteBug,
       }}
     >
       {props.children}

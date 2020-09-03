@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import BugContext from '../../context/bug/bugContext';
 
 const BugItem = ({ bug }) => {
+  const bugContext = useContext(BugContext);
+  const { deleteBug } = bugContext;
+
   const { id, name, description, priority, status, location } = bug;
+
+  const onDelete = () => {
+    deleteBug(id);
+  };
+
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
@@ -34,7 +43,11 @@ const BugItem = ({ bug }) => {
           Completed{' '}
           <i style={{ marginLeft: '0.5rem' }} className='fas fa-check'></i>
         </button>
-        <button style={{ float: 'right' }} className='btn btn-danger btn-sm'>
+        <button
+          style={{ float: 'right' }}
+          className='btn btn-danger btn-sm'
+          onClick={onDelete}
+        >
           Delete
         </button>
       </div>
