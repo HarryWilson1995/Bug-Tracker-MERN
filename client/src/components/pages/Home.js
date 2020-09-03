@@ -1,10 +1,13 @@
 import React from 'react';
 import Bugs from '../bugs/Bugs';
+import BugForm from '../bugs/BugForm';
 
 const Home = () => {
   return (
     <div className='grid-2'>
-      <div>{/* Bug Form */}</div>
+      <div>
+        <BugForm />
+      </div>
       <div>
         <Bugs />
       </div>
