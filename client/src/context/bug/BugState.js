@@ -16,24 +16,28 @@ const BugState = (props) => {
   const initialState = {
     bugs: [
       {
+        id: 1,
         name: 'Coding Issue 1',
         description: 'Ruby language issue',
         status: 'Open',
         priority: 'Normaly',
       },
       {
+        id: 2,
         name: 'Coding Issue 2',
         description: 'Ruby language issue',
         status: 'Open',
         priority: 'Normaly',
       },
       {
+        id: 3,
         name: 'Coding Issue 3',
         description: 'Ruby language issue',
         status: 'Open',
         priority: 'Normaly',
       },
       {
+        id: 4,
         name: 'Coding Issue 4',
         description: 'Ruby language issue',
         status: 'Open',
