@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import BugContext from '../../context/bug/bugContext';
 
 const BugForm = () => {
+  const bugContext = useContext(BugContext);
+
   const [bug, setBug] = useState({
     name: '',
     description: '',
@@ -13,8 +16,20 @@ const BugForm = () => {
 
   const onChange = (e) => setBug({ ...bug, [e.target.name]: e.target.value });
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    bugContext.addBug(bug);
+    setBug({
+      name: '',
+      description: '',
+      location: '',
+      status: 'Open',
+      priority: 'Normal',
+    });
+  };
+
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <h2 className='text-primary'>Add New Bug</h2>
       <input
         type='text'
