@@ -384,6 +384,10 @@ table th {
   margin-right: 0.6rem;
 }
 
+#logo {
+  margin-right: 1rem;
+}
+
 /* Animation (Add After) */
 .item-enter {
   opacity: 0;
