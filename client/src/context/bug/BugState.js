@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import BugContext from './bugContext';
 import bugReducer from './bugReducer';
 import {
@@ -53,6 +53,10 @@ const BugState = (props) => {
   const [state, dispatch] = useReducer(bugReducer, initialState);
 
   // Add Bug
+  const addBug = (bug) => {
+    bug.id = uuidv4();
+    dispatch({ type: ADD_BUG, payload: bug });
+  };
 
   // Delete Bug
 
@@ -70,6 +74,7 @@ const BugState = (props) => {
     <BugContext.Provider
       value={{
         bugs: state.bugs,
+        addBug,
       }}
     >
       {props.children}
