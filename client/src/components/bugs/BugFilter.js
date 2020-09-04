@@ -1,10 +1,16 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import BugContext from '../../context/bug/bugContext';
 
 const BugFilter = () => {
   const bugContext = useContext(BugContext);
   const text = useRef('');
-  const { filterBugs, clearFilter } = bugContext;
+  const { filterBugs, clearFilter, filtered } = bugContext;
+
+  useEffect(() => {
+    if (filtered === null) {
+      text.current.value = '';
+    }
+  });
 
   const onChange = (e) => {
     if (text.current.value !== '') {
