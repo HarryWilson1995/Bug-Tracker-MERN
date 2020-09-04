@@ -10,6 +10,7 @@ import {
   UPDATE_BUG,
   FILTER_BUGS,
   CLEAR_BUGS,
+  CLEAR_FILTER,
 } from '../types';
 
 const BugState = (props) => {
@@ -49,6 +50,7 @@ const BugState = (props) => {
       },
     ],
     current: null,
+    filtered: null,
   };
 
   const [state, dispatch] = useReducer(bugReducer, initialState);
@@ -80,8 +82,14 @@ const BugState = (props) => {
   };
 
   // Filter Bugs
+  const filterBugs = (text) => {
+    dispatch({ type: FILTER_BUGS, payload: text });
+  };
 
   // Clear Filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
 
   return (
     <BugContext.Provider
@@ -93,6 +101,8 @@ const BugState = (props) => {
         updateBug,
         setCurrent,
         clearCurrent,
+        filterBugs,
+        clearFilter,
       }}
     >
       {props.children}

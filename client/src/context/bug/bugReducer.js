@@ -6,6 +6,7 @@ import {
   UPDATE_BUG,
   FILTER_BUGS,
   CLEAR_BUGS,
+  CLEAR_FILTER,
 } from '../types';
 
 export default (state, action) => {
@@ -36,6 +37,19 @@ export default (state, action) => {
       return {
         ...state,
         current: null,
+      };
+    case FILTER_BUGS:
+      return {
+        ...state,
+        filtered: state.bugs.filter((bug) => {
+          const regEx = new RegExp(`${action.payload}`, 'gi');
+          return bug.name.match(regEx) || bug.priority.match(regEx);
+        }),
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null,
       };
     default:
       return state;
