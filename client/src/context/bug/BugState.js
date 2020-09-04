@@ -75,6 +75,9 @@ const BugState = (props) => {
   };
 
   // Update Bug
+  const updateBug = (bug) => {
+    dispatch({ type: UPDATE_BUG, payload: bug });
+  };
 
   // Filter Bugs
 
@@ -87,6 +90,7 @@ const BugState = (props) => {
         current: state.current,
         addBug,
         deleteBug,
+        updateBug,
         setCurrent,
         clearCurrent,
       }}
