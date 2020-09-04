@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import BugContext from '../../context/bug/bugContext';
 import BugItem from './BugItem';
+import BugContext from '../../context/bug/bugContext';
 
 const Bugs = () => {
   const bugContext = useContext(BugContext);
@@ -13,15 +13,11 @@ const Bugs = () => {
   }
   return (
     <Fragment>
-      <TransitionGroup>
-        {filtered !== null
-          ? filtered.map((bug) => <BugItem key={bug.id} bug={bug} />)
-          : bugs.map((bug) => (
-              <CSSTransition key={bug.id} timeout={500} classNames='item'>
-                <BugItem bug={bug} />
-              </CSSTransition>
-            ))}
-      </TransitionGroup>
+      {filtered !== null
+        ? filtered.map((bug) => <BugItem key={bug.id} bug={bug} />)
+        : bugs
+            .sort((a, b) => (a.priority > b.priority ? 1 : -1))
+            .map((bug) => <BugItem key={bug.id} bug={bug} />)}
     </Fragment>
   );
 };
