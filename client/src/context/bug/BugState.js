@@ -96,6 +96,7 @@ const BugState = (props) => {
       value={{
         bugs: state.bugs,
         current: state.current,
+        filtered: state.filtered,
         addBug,
         deleteBug,
         updateBug,
