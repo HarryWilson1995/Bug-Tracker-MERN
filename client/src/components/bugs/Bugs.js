@@ -1,5 +1,4 @@
 import React, { Fragment, useContext } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import BugItem from './BugItem';
 import BugContext from '../../context/bug/bugContext';
 
