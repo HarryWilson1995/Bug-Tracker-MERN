@@ -1,8 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import BugContext from '../../context/bug/bugContext';
 
 const BugForm = () => {
   const bugContext = useContext(BugContext);
+
+  const { addBug, current } = bugContext;
+
+  useEffect(() => {
+    if (current !== null) {
+      setBug(current);
+    } else {
+      setBug({
+        name: '',
+        description: '',
+        location: '',
+        status: 'Open',
+        priority: 'Normal',
+      });
+    }
+  }, [bugContext, current]);
 
   const [bug, setBug] = useState({
     name: '',
@@ -18,7 +34,7 @@ const BugForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    bugContext.addBug(bug);
+    addBug(bug);
     setBug({
       name: '',
       description: '',
