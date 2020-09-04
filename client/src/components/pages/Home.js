@@ -1,6 +1,7 @@
 import React from 'react';
 import Bugs from '../bugs/Bugs';
 import BugForm from '../bugs/BugForm';
+import BugFilter from '../bugs/BugFilter';
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <BugForm />
       </div>
       <div>
+        <BugFilter />
         <Bugs />
       </div>
     </div>
