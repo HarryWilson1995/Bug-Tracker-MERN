@@ -48,6 +48,7 @@ const BugState = (props) => {
         location: 'filename',
       },
     ],
+    current: null,
   };
 
   const [state, dispatch] = useReducer(bugReducer, initialState);
@@ -64,8 +65,14 @@ const BugState = (props) => {
   };
 
   // Set Current Bug
+  const setCurrent = (bug) => {
+    dispatch({ type: SET_CURRENT, payload: bug });
+  };
 
   // Clear Current Bug
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT });
+  };
 
   // Update Bug
 
@@ -77,8 +84,11 @@ const BugState = (props) => {
     <BugContext.Provider
       value={{
         bugs: state.bugs,
+        current: state.current,
         addBug,
         deleteBug,
+        setCurrent,
+        clearCurrent,
       }}
     >
       {props.children}

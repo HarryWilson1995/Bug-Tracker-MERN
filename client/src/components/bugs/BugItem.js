@@ -4,12 +4,13 @@ import BugContext from '../../context/bug/bugContext';
 
 const BugItem = ({ bug }) => {
   const bugContext = useContext(BugContext);
-  const { deleteBug } = bugContext;
+  const { deleteBug, setCurrent, clearCurrent } = bugContext;
 
   const { id, name, description, priority, status, location } = bug;
 
   const onDelete = () => {
     deleteBug(id);
+    clearCurrent();
   };
 
   return (
@@ -33,7 +34,11 @@ const BugItem = ({ bug }) => {
         <li>Team members: </li>
       </ul>
       <div className='button-container'>
-        <button style={{ marginRight: '1rem' }} className='btn btn-dark btn-sm'>
+        <button
+          style={{ marginRight: '1rem' }}
+          className='btn btn-dark btn-sm'
+          onClick={() => setCurrent(bug)}
+        >
           Edit
         </button>
         <button

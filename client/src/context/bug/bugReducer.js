@@ -20,6 +20,16 @@ export default (state, action) => {
         ...state,
         bugs: state.bugs.filter((bug) => bug.id !== action.payload),
       };
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: action.payload,
+      };
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null,
+      };
     default:
       return state;
   }
