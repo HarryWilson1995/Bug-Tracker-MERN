@@ -43,7 +43,7 @@ export default (state, action) => {
         ...state,
         filtered: state.bugs.filter((bug) => {
           const regEx = new RegExp(`${action.payload}`, 'gi');
-          return bug.name.match(regEx) || bug.priority.match(regEx);
+          return bug.name.match(regEx);
         }),
       };
     case CLEAR_FILTER:
