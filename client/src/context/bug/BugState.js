@@ -53,6 +53,23 @@ const BugState = (props) => {
     }
   };
 
+  // Update Bug
+  const updateBug = async (bug) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.put(`/api/bugs/${bug._id}`, bug, config);
+
+      dispatch({ type: UPDATE_BUG, payload: res.data });
+    } catch (err) {
+      dispatch({ type: BUG_ERROR, payload: err.response.msg });
+    }
+  };
+
   // Delete Bug
   const deleteBug = async (id) => {
     try {
@@ -77,11 +94,6 @@ const BugState = (props) => {
   // Clear Current Bug
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
-  };
-
-  // Update Bug
-  const updateBug = (bug) => {
-    dispatch({ type: UPDATE_BUG, payload: bug });
   };
 
   // Filter Bugs

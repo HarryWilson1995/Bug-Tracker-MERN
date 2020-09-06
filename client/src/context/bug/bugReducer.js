@@ -35,7 +35,7 @@ export default (state, action) => {
       return {
         ...state,
         bugs: state.bugs.map((bug) =>
-          bug.id === action.payload.id ? action.payload : bug
+          bug._id === action.payload._id ? action.payload : bug
         ),
         loading: false,
       };
