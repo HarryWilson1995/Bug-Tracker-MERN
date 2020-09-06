@@ -39,6 +39,14 @@ export default (state, action) => {
         ),
         loading: false,
       };
+    case CLEAR_BUGS:
+      return {
+        ...state,
+        bugs: null,
+        filtered: null,
+        error: null,
+        current: null,
+      };
     case SET_CURRENT:
       return {
         ...state,

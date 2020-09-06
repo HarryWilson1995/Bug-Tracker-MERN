@@ -58,6 +58,11 @@ const BugState = (props) => {
     dispatch({ type: DELETE_BUG, payload: id });
   };
 
+  // Clear Bugs
+  const clearBugs = () => {
+    dispatch({ type: CLEAR_BUGS });
+  };
+
   // Set Current Bug
   const setCurrent = (bug) => {
     dispatch({ type: SET_CURRENT, payload: bug });
@@ -98,6 +103,7 @@ const BugState = (props) => {
         clearCurrent,
         filterBugs,
         clearFilter,
+        clearBugs,
       }}
     >
       {props.children}
