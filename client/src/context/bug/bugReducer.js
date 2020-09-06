@@ -8,19 +8,28 @@ import {
   CLEAR_BUGS,
   CLEAR_FILTER,
   BUG_ERROR,
+  GET_BUGS,
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_BUGS:
+      return {
+        ...state,
+        bugs: action.payload,
+        loading: false,
+      };
     case ADD_BUG:
       return {
         ...state,
         bugs: [...state.bugs, action.payload],
+        loading: false,
       };
     case DELETE_BUG:
       return {
         ...state,
         bugs: state.bugs.filter((bug) => bug.id !== action.payload),
+        loading: false,
       };
     case UPDATE_BUG:
       return {
@@ -28,6 +37,7 @@ export default (state, action) => {
         bugs: state.bugs.map((bug) =>
           bug.id === action.payload.id ? action.payload : bug
         ),
+        loading: false,
       };
     case SET_CURRENT:
       return {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import BugContext from './bugContext';
 import bugReducer from './bugReducer';
 import {
+  GET_BUGS,
   ADD_BUG,
   DELETE_BUG,
   SET_CURRENT,
@@ -16,13 +17,24 @@ import {
 
 const BugState = (props) => {
   const initialState = {
-    bugs: [],
+    bugs: null,
     current: null,
     filtered: null,
     error: null,
   };
 
   const [state, dispatch] = useReducer(bugReducer, initialState);
+
+  // Get Bugs
+  const getBugs = async () => {
+    try {
+      const res = await axios.get('/api/bugs');
+
+      dispatch({ type: GET_BUGS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: BUG_ERROR, payload: err.response.msg });
+    }
+  };
 
   // Add Bug
   const addBug = async (bug) => {
@@ -78,6 +90,7 @@ const BugState = (props) => {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        getBugs,
         addBug,
         deleteBug,
         updateBug,
