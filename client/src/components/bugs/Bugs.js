@@ -13,10 +13,10 @@ const Bugs = () => {
   return (
     <Fragment>
       {filtered !== null
-        ? filtered.map((bug) => <BugItem key={bug.id} bug={bug} />)
+        ? filtered.map((bug) => <BugItem key={bug._id} bug={bug} />)
         : bugs
             .sort((a, b) => (a.priority > b.priority ? 1 : -1))
-            .map((bug) => <BugItem key={bug.id} bug={bug} />)}
+            .map((bug) => <BugItem key={bug._id} bug={bug} />)}
     </Fragment>
   );
 };

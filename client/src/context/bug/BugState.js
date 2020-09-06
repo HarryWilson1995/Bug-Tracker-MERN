@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 import BugContext from './bugContext';
 import bugReducer from './bugReducer';
 import {
@@ -11,54 +11,34 @@ import {
   FILTER_BUGS,
   CLEAR_BUGS,
   CLEAR_FILTER,
+  BUG_ERROR,
 } from '../types';
 
 const BugState = (props) => {
   const initialState = {
-    bugs: [
-      {
-        id: 1,
-        name: 'Coding Issue 1',
-        description: 'Ruby language issue',
-        status: 'Open',
-        priority: 'Low',
-        location: 'filename',
-      },
-      {
-        id: 2,
-        name: 'Coding Issue 2',
-        description: 'Ruby language issue',
-        status: 'Open',
-        priority: 'Normal',
-        location: 'filename',
-      },
-      {
-        id: 3,
-        name: 'Coding Issue 3',
-        description: 'Ruby language issue',
-        status: 'Open',
-        priority: 'High',
-        location: 'filename',
-      },
-      {
-        id: 4,
-        name: 'Coding Issue 4',
-        description: 'Ruby language issue',
-        status: 'Open',
-        priority: 'Normal',
-        location: 'filename',
-      },
-    ],
+    bugs: [],
     current: null,
     filtered: null,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(bugReducer, initialState);
 
   // Add Bug
-  const addBug = (bug) => {
-    bug.id = uuidv4();
-    dispatch({ type: ADD_BUG, payload: bug });
+  const addBug = async (bug) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.post('/api/bugs', bug, config);
+
+      dispatch({ type: ADD_BUG, payload: res.data });
+    } catch (err) {
+      dispatch({ type: BUG_ERROR, payload: err.response.msg });
+    }
   };
 
   // Delete Bug
@@ -97,6 +77,7 @@ const BugState = (props) => {
         bugs: state.bugs,
         current: state.current,
         filtered: state.filtered,
+        error: state.error,
         addBug,
         deleteBug,
         updateBug,

@@ -7,6 +7,7 @@ import {
   FILTER_BUGS,
   CLEAR_BUGS,
   CLEAR_FILTER,
+  BUG_ERROR,
 } from '../types';
 
 export default (state, action) => {
@@ -50,6 +51,11 @@ export default (state, action) => {
       return {
         ...state,
         filtered: null,
+      };
+    case BUG_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;
