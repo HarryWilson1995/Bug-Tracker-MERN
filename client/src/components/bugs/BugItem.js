@@ -42,18 +42,12 @@ const BugItem = ({ bug }) => {
           Edit
         </button>
         <button
-          style={{ marginRight: '1rem' }}
+          style={{ float: 'right' }}
           className='btn btn-success btn-sm'
+          onClick={onDelete}
         >
           Completed{' '}
           <i style={{ marginLeft: '0.5rem' }} className='fas fa-check'></i>
-        </button>
-        <button
-          style={{ float: 'right' }}
-          className='btn btn-danger btn-sm'
-          onClick={onDelete}
-        >
-          Delete
         </button>
       </div>
     </div>
