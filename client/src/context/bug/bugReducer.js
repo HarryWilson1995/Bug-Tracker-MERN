@@ -28,7 +28,7 @@ export default (state, action) => {
     case DELETE_BUG:
       return {
         ...state,
-        bugs: state.bugs.filter((bug) => bug.id !== action.payload),
+        bugs: state.bugs.filter((bug) => bug._id !== action.payload),
         loading: false,
       };
     case UPDATE_BUG:

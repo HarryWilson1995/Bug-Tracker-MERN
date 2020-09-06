@@ -6,10 +6,10 @@ const BugItem = ({ bug }) => {
   const bugContext = useContext(BugContext);
   const { deleteBug, setCurrent, clearCurrent } = bugContext;
 
-  const { id, name, description, priority, status, location } = bug;
+  const { _id, name, description, priority, status, location } = bug;
 
   const onDelete = () => {
-    deleteBug(id);
+    deleteBug(_id);
     clearCurrent();
   };
 
