@@ -27,11 +27,9 @@ const BugItem = ({ bug }) => {
         </span>
       </h3>
       <ul className='list'>
-        <li>Created by: </li>
         <li>Status: {status}</li>
         <li>Location/File: {location}</li>
-        <li>Description: {description}</li>
-        <li>Team members: </li>
+        <li>Notes: {description}</li>
       </ul>
       <div className='button-container'>
         <button
